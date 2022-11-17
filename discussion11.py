@@ -40,13 +40,17 @@ def create_species_table(cur, conn):
 # TASK 1
 # CREATE TABLE FOR PATIENTS IN DATABASE
 def create_patients_table(cur, conn):
-    cur.execute("CREATE TABLE IF NOT EXISTS Patients(id INTEGER PRIMARY KEY,title TEXT")
+    cur.execute('CREATE TABLE IF NOT EXISTS Pet (id int, name string, species_id number, age int, cuteness int, aggressiveness number)')
+    conn.commit()
     
     pass
 
 
 # ADD FLUFFLE TO THE TABLE
 def add_fluffle(cur, conn):
+    cur.execute('INSERT INTO Pet (id, name, species_id, age, cuteness, aggressiveness) VALUES (?, ?)',
+                'Fluffle', 0, 3, 90, 100)
+    conn.commit()
     pass
     
 
@@ -62,6 +66,11 @@ def add_pets_from_json(filename, cur, conn):
     json_data = json.loads(file_data)
 
     # THE REST IS UP TO YOU
+    for data in json_data:
+        cur.execute('INSERT INTO Pet (id, name, species_id, age, cuteness, aggressiveness) VALUES (?, ?)',
+                    data["name"], data["species"], int(data["age"]), int(data["cuteness"]), int(data["aggressiveness"]))
+        conn.commit()
+
     pass
 
 
