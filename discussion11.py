@@ -2,6 +2,7 @@ import unittest
 import sqlite3
 import json
 import os
+#Lea Srebrenik
 # starter code
 
 # Create Database
@@ -39,6 +40,8 @@ def create_species_table(cur, conn):
 # TASK 1
 # CREATE TABLE FOR PATIENTS IN DATABASE
 def create_patients_table(cur, conn):
+    cur.execute("CREATE TABLE IF NOT EXISTS Patients(id INTEGER PRIMARY KEY,title TEXT")
+    
     pass
 
 
